@@ -3,3 +3,5 @@
 *.png
 *.jpg
 /img
+*.sublime-project
+*.sublime-workspace
