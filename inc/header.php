@@ -14,7 +14,7 @@
 			<h1 class="branding-title"><a href="./">Shirts 4 Mike</a></h1>
 
 			<ul class="nav">
-				<li class="shirts"><a href="#">Shirts</a></li>
+				<li class="shirts"><a href="shirts.php">Shirts</a></li>
 				<li class="contact"><a href="contact.php">Contact</a></li>
 				<li class="cart"><a href="#">Shopping Cart</a></li>
 			</ul>
