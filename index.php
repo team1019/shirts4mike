@@ -1,4 +1,7 @@
-<?php include('inc/header.php'); ?>
+<?php 
+$pageTitle = "Shirts 4 Mike";
+include('inc/header.php'); 
+?>
 
 		<div class="section banner">
 
