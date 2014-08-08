@@ -1,5 +1,4 @@
 <?php
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// From contact-process.php
 	$name = $_POST["name"];
@@ -10,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$email_body += "Email: " . $email . "\n";
 	$email_body += "Message: " . $message;
 	// TODO: Send email
-	header("Location: contact-thanks.php");
+	header("Location: contact.php?status=thanks");
 	exit;
 }
 
@@ -21,6 +20,10 @@ include('inc/header.php');
 <div class="section page">
 	<div class="wrapper">
 		<h1>Contact</h1>
+		<?php if (isset($_GET["status"]) AND $_GET["status"] == "thanks") { ?>
+			<p>Thanks for contacting mike!</p>
+		<?php } else { ?>
+
 		<p>I&rsquo;d love to hear from you! Complete the form to send me an email.</p>
 		<form method="post" action="contact.php">
 			<table>
@@ -39,6 +42,7 @@ include('inc/header.php');
 			</table>
 			<input type="submit" value="Send">
 		</form>
+		<?php } ?>
 	</div>
 </div>
 <?php include('inc/footer.php'); ?>
