@@ -1,22 +1,63 @@
 <?php 
 $products = array();
 // Adds a new element with whatever index is available next
-$products[101] = "Logo Shirt, Green";
-$products[102] = "Logo Shirt, Red";
-$products[103] = "Mike the Frog Shirt, Black";
-$products[104] = "Mike the Frog Shirt, Blue";
+$products[101] = array(
+    "name"	=> "Logo Shirt, Red",
+    "img"	=> "img/shirts/shirt-101.jpg",
+    "price"	=> 18   
+);
+$products[102] = array(
+    "name"	=> "Mike the Frog Shirt, Black",
+    "img"	=> "img/shirts/shirt-102.jpg",
+    "price" => 20
+);
+$products[103] = array(
+    "name"	=> "Mike the Frog Shirt, Blue",
+    "img"	=> "img/shirts/shirt-103.jpg",    
+    "price"	=> 20
+);
+$products[104] = array(
+    "name"	=> "Logo Shirt, Green",
+    "img"	=> "img/shirts/shirt-104.jpg",    
+    "price"	=> 18
+);
+$products[105] = array(
+    "name"	=> "Mike the Frog Shirt, Yellow",
+    "img"	=> "img/shirts/shirt-105.jpg",    
+    "price"	=> 25
+);
+$products[106] = array(
+    "name"	=> "Logo Shirt, Gray",
+    "img"	=> "img/shirts/shirt-106.jpg",    
+    "price" => 20
+);
+$products[107] = array(
+    "name"	=> "Logo Shirt, Turquoise",
+    "img"	=> "img/shirts/shirt-107.jpg",    
+    "price" => 20
+);
+$products[108] = array(
+    "name"	=> "Logo Shirt, Orange",
+    "img"	=> "img/shirts/shirt-108.jpg",    
+    "price" => 25,
+);
 
 
 $pageTitle = "Shirts";
 $section = "shirts";
 include('inc/header.php'); 
 ?>
-	<div class="section page">
+	<div class="section shirts page">
 		<div class="wrapper">
 		<h1>Mike&rsquo;s Full Catalog of Shirts</h1>
-		<ul>
+		<ul class="products">
 			<?php foreach($products as $product) { ?>
-			<li><?php echo $product; ?></li>
+			<li>
+				<a href="#">
+					<img src="<?php echo $product["img"]; ?>" alt="<?php echo $product["name"]; ?>">
+					<p>View Details</p>
+				</a>
+			</li>
 			<?php } ?>
 		</ul>
 		</div>
