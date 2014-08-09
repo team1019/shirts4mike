@@ -36,10 +36,9 @@ include("inc/header.php");
 							<label for="os0">Size</label>
 						</th>
 						<td><select name="os0" id="os0">
-							<option value="Small">Small</option>
-							<option value="Medium">Medium</option>
-							<option value="Large">Large</option>
-							<option value="Extra-Large">Extra-Large</option>
+							<?php foreach($product["sizes"] as $size) { ?>
+								<option value='<?php echo $size; ?>'><?php echo $size; ?></option>
+							<?php } ?>
 						</select></td></tr>
 					</table>
 					<input type="hidden" name="encrypted" value='<?php echo $product["paypal"]; ?>'>
