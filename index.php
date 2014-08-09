@@ -26,9 +26,18 @@ include('inc/header.php');
 				<h2>Mike&rsquo;s Latest Shirts</h2>
 				
 				<ul class="products">
-					<?php foreach ($products as $product_id => $product) {
-						echo get_list_view_html($product_id, $product);
-					 } ?>		
+					<?php
+						$total_products = count($products);
+						$position = 0;
+						$list_view_html = "";
+						foreach ($products as $product_id => $product) {
+							$position++;
+							if ($total_products - $position < 4) {
+								$list_view_html = get_list_view_html($product_id, $product) . $list_view_html;
+							}
+						}
+					 	echo $list_view_html; 
+					 ?>		
 				</ul>
 
 			</div>
