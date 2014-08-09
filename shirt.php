@@ -1,8 +1,17 @@
 <?php
+if (isset($_GET["id"])) {
 include("inc/products.php");
 // Load id variable into variable
 $product_id = $_GET["id"];
-$product = $products[$product_id];
+	if (isset($products[$product_id])) {
+	$product = $products[$product_id];
+	}
+}
+if (!isset($product)) {
+	header("Location: shirts.php");
+	exit();
+}
+
 $section = "shirts";
 $pageTitle = $product["name"];
 include("inc/header.php");
