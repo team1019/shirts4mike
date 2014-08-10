@@ -22,6 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		exit;
 	}
 
+	require_once("inc/phpmailer/class.phpmailer.php");
+	$mail = new PHPMailer();
+	if (!$mail->ValidateAddress($email)) {
+		echo "You must specify a valid email address.";
+		exit;
+	}
+
 	$email_body = "";
 	$email_body += "Name: " . $name. "\n";
 	$email_body += "Email: " . $email . "\n";
