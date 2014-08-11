@@ -12,31 +12,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Prevents Email Header Injection Attacks
 	foreach( $_POST as $value ) {
 		if (stripos($value,'content-Type: ') !== FALSE) {
-			echo "There was a problem with the information you entered.";
-			exit;
+			$error_message = "There was a problem with the information you entered.";
 		}
 	}
 
 	if ($_POST["address"] != "") {
-		echo "Your form submission has an error.";
-		exit;
+		$error_message = "Your form submission has an error.";
 	}
 
 	require_once("inc/phpmailer/class.phpmailer.php");
 	$mail = new PHPMailer();
 	if (!$mail->ValidateAddress($email)) {
-		echo "You must specify a valid email address.";
-		exit;
+		$error_message = "You must specify a valid email address.";
 	}
 
-	$email_body = "";
-	$email_body += "Name: " . $name. "\n";
-	$email_body += "Email: " . $email . "\n";
-	$email_body += "Message: " . $message;
-	// TODO: Send email
-	header("Location: contact.php?status=thanks");
-	exit;
-}
+	if (!isset($error_message)) {
+		$email_body = "";
+		$email_body += "Name: " . $name. "\n";
+		$email_body += "Email: " . $email . "\n";
+		$email_body += "Message: " . $message;
+		// TODO: Send email
+		header("Location: contact.php?status=thanks");
+		exit;
+	} // End error message check
+} // End POST Check
 $pageTitle = "Contact Mike";
 $section = "contact";
 include('inc/header.php');
