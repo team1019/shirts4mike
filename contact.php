@@ -6,23 +6,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$message = trim($_POST["message"]);
 	
 	if ($name == "" OR $email = "" OR $message = "") {
-		echo "You must specify a value for name, email and a message";
-		exit;
+		$error_message = "You must specify a value for name, email and a message";
 	}
 	// Prevents Email Header Injection Attacks
-	foreach( $_POST as $value ) {
-		if (stripos($value,'content-Type: ') !== FALSE) {
-			$error_message = "There was a problem with the information you entered.";
+	if (!isset($error_message)) {
+		foreach( $_POST as $value ) {
+			if (stripos($value,'content-Type: ') !== FALSE) {
+				$error_message = "There was a problem with the information you entered.";
+			}
 		}
 	}
-
-	if ($_POST["address"] != "") {
+	if (!isset($error_message) AND $_POST["address"] != "") {
 		$error_message = "Your form submission has an error.";
-	}
+	} // Honey Pot
 
 	require_once("inc/phpmailer/class.phpmailer.php");
 	$mail = new PHPMailer();
-	if (!$mail->ValidateAddress($email)) {
+	if (!isset($error_message) AND !$mail->ValidateAddress($email)) {
 		$error_message = "You must specify a valid email address.";
 	}
 
@@ -47,6 +47,11 @@ include('inc/header.php');
 		<p>Thanks for contacting mike!</p>
 		<?php } else { ?>
 		<p>I&rsquo;d love to hear from you! Complete the form to send me an email.</p>
+		<?php 
+			if (isset($error_message)) {
+				echo '<p class="message">' . $error_message . '</p>';
+			}
+		 ?>
 		<form method="post" action="contact.php">
 			<table>
 				<tr>
